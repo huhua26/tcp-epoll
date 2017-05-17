@@ -324,6 +324,9 @@ bool MsTcpLink::link_listen( unsigned int ui_block )
 
 void MsTcpLink::link_destroy( bool b_self )
 {        
+	if( mh_link == g_ms_tcp_first_create_link ){
+		g_ms_tcp_first_create_link = INVALID_HTCPLINK;
+	}
     MsTcpLink::del_link( mh_link );
 
     if( mi_socket != -1 ){
